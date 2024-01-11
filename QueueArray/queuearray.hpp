@@ -32,14 +32,13 @@ public:
 template <typename T>
 Queuearray<T>::~Queuearray()
 {
-    delete [] data;
+    delete[] data;
 }
 
 template <typename T>
 void Queuearray<T>::realocate(int new_size)
 {
     T *new_array = new T[new_size];
-
 
     for (int i = 0; i < top_idx; i++)
     {
@@ -70,26 +69,29 @@ void Queuearray<T>::enqueue(const T &element)
 }
 
 template <typename T>
-T& Queuearray<T>::front(){
+T &Queuearray<T>::front()
+{
     return data[0];
 }
 
 template <typename T>
-void Queuearray<T>::dequeue(){
+void Queuearray<T>::dequeue()
+{
 
-if(empty()){
-    throw std::underflow_error("Empty queue!");
-
-}else{
-    T *tmp = new T[top_idx];
-    for (size_t i = 0, j = 1; j <= top_idx; i++, j++)
+    if (empty())
     {
-         tmp[i] = data[j];
+        throw std::underflow_error("Empty queue!");
     }
-    top_idx = top_idx-1;
-    data = tmp;
-    
-}
+    else
+    {
+        T *tmp = new T[top_idx];
+        for (size_t i = 0, j = 1; j <= top_idx; i++, j++)
+        {
+            tmp[i] = data[j];
+        }
+        top_idx = top_idx - 1;
+        data = tmp;
+    }
 }
 
 template <typename T>
@@ -98,16 +100,18 @@ void Queuearray<T>::display()
 
     for (int i = top_idx; i >= 0; i--)
     {
-        std::cout << data[i] << " " ;
-        
+        std::cout << data[i] << " ";
     }
     std::cout << std::endl;
 }
 
 template <typename T>
-bool Queuearray<T>::empty(){
-    if(!size()) return true;
-    else return false;
+bool Queuearray<T>::empty()
+{
+    if (!size())
+        return true;
+    else
+        return false;
 }
 
 #endif // !QUEUEARRAY_HPP_

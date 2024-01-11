@@ -4,12 +4,16 @@
 #include <algorithm>
 #include <iostream>
 
-template <class T> struct Node {
+template <class T>
+struct Node
+{
   T data;
   Node<T> *next;
 };
 
-template <class T> class LinkedList {
+template <class T>
+class LinkedList
+{
 private:
   Node<T> *_head;
   Node<T> *_tail;
@@ -26,23 +30,26 @@ public:
   void Print();
   void InsertFirst(T);
   void InsertLast(T);
-
 };
 
-template <class T> LinkedList<T>::LinkedList(const LinkedList &other) {
+template <class T>
+LinkedList<T>::LinkedList(const LinkedList &other)
+{
   _head = nullptr;
   _tail = nullptr;
 
   Node<T> *temp = other._head;
 
-  while (temp != nullptr) {
+  while (temp != nullptr)
+  {
     InsertLast(temp->data);
     temp = temp->next;
   }
 }
 
 template <class T>
-LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &rhs) {
+LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &rhs)
+{
   LinkedList tmp(rhs);
 
   std::swap(tmp._head, _head);
@@ -51,14 +58,18 @@ LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &rhs) {
   return *this;
 }
 
-template <class T> LinkedList<T>::LinkedList(LinkedList &&other) {
+template <class T>
+LinkedList<T>::LinkedList(LinkedList &&other)
+{
   _head = other._head;
   _tail = other._tail;
   other._head = nullptr;
   other._tail = nullptr;
 }
 
-template <class T> LinkedList<T> &LinkedList<T>::operator=(LinkedList &&rhs) {
+template <class T>
+LinkedList<T> &LinkedList<T>::operator=(LinkedList &&rhs)
+{
   _head = rhs._head;
   _tail = rhs._tail;
   rhs._head = nullptr;
@@ -67,9 +78,12 @@ template <class T> LinkedList<T> &LinkedList<T>::operator=(LinkedList &&rhs) {
   return &this;
 }
 
-template <class T> LinkedList<T>::~LinkedList() {
+template <class T>
+LinkedList<T>::~LinkedList()
+{
   Node<T> *tmp = _head;
-  while (tmp != _tail) {
+  while (tmp != _tail)
+  {
     Node<T> *next = tmp->next;
     delete tmp;
     tmp = next;
@@ -80,7 +94,7 @@ template <class T> LinkedList<T>::~LinkedList() {
   std::cout << "Destructor!" << '\n';
 }
 
-template<class T>
+template <class T>
 void LinkedList<T>::InsertFirst(T first)
 {
   Node<T> *tmp = new Node<T>;
@@ -88,29 +102,33 @@ void LinkedList<T>::InsertFirst(T first)
   tmp->next = _head->next;
   _head->data = first;
   _head->next = tmp;
-
 }
 
-template <class T> void LinkedList<T>::InsertLast(T last) {
+template <class T>
+void LinkedList<T>::InsertLast(T last)
+{
   Node<T> *tmp = new Node<T>;
   tmp->data = last;
   tmp->next = nullptr;
 
-  if (_head == nullptr) {
+  if (_head == nullptr)
+  {
     _head = tmp;
     _tail = tmp;
-
-  } else {
+  }
+  else
+  {
     _tail->next = tmp;
     _tail = _tail->next;
   }
 }
 
-
-
-template <class T> void LinkedList<T>::Print() {
+template <class T>
+void LinkedList<T>::Print()
+{
   Node<T> *help = _head;
-  while (help != nullptr) {
+  while (help != nullptr)
+  {
     std::cout << help->data << "\n";
     help = help->next;
   }

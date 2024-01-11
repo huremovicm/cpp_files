@@ -88,14 +88,12 @@ void Queuecbuff<T>::dequeue()
     else
     {
         T *tmp = new T[rear_];
-    for (size_t i = 0, j = 1; j <= rear_; i++, j++)
-    {
-         tmp[i] = data_[j];
-    }
-    rear_ = rear_-1;
-    data_ = tmp;
-    
-            
+        for (size_t i = 0, j = 1; j <= rear_; i++, j++)
+        {
+            tmp[i] = data_[j];
+        }
+        rear_ = rear_ - 1;
+        data_ = tmp;
     }
 }
 

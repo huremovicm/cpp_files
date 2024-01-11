@@ -46,8 +46,8 @@ public:
     return *this;
   }
 
-  //Increment
-  //Prefix
+  // Increment
+  // Prefix
   Iterator &operator++()
   {
     if (currentNode)
@@ -55,7 +55,7 @@ public:
     return *this;
   }
 
-  //Postfix
+  // Postfix
   Iterator operator++(int)
   {
     Iterator iterator = *this;
@@ -91,8 +91,8 @@ public:
     return *this;
   }
 
-  //Decrement
-  //Prefix
+  // Decrement
+  // Prefix
   Iterator &operator--()
   {
     if (currentNode)
@@ -100,7 +100,7 @@ public:
     return *this;
   }
 
-  //Postfix
+  // Postfix
   Iterator operator--(int)
   {
     Iterator iterator = *this;
@@ -129,7 +129,7 @@ private:
   Node<T> *currentNode;
 };
 
-//Default constructor
+// Default constructor
 template <typename T>
 DLList<T>::DLList()
 {
@@ -138,7 +138,7 @@ DLList<T>::DLList()
   listSize = 0;
 }
 
-//Destructor
+// Destructor
 template <typename T>
 DLList<T>::~DLList()
 {
@@ -154,7 +154,7 @@ DLList<T>::~DLList()
   delete tail_;
 }
 
-//Copy constructor
+// Copy constructor
 template <typename T>
 DLList<T>::DLList(const DLList<T> &other)
 {
@@ -182,7 +182,7 @@ DLList<T>::DLList(const DLList<T> &other)
   }
 }
 
-//Move constructor
+// Move constructor
 template <typename T>
 DLList<T>::DLList(DLList<T> &&other)
 {
@@ -205,7 +205,7 @@ DLList<T>::DLList(DLList<T> &&other)
   }
 }
 
-//Copy operator =
+// Copy operator =
 template <typename T>
 DLList<T> &DLList<T>::operator=(const DLList<T> &other)
 {
@@ -232,7 +232,7 @@ DLList<T> &DLList<T>::operator=(const DLList<T> &other)
   return *this;
 }
 
-//Move operator =
+// Move operator =
 template <typename T>
 DLList<T> &DLList<T>::operator=(DLList<T> &&other)
 {
@@ -255,7 +255,7 @@ DLList<T> &DLList<T>::operator=(DLList<T> &&other)
   }
 }
 
-//Add
+// Add
 template <typename T>
 void DLList<T>::add(const T &data)
 {
@@ -299,7 +299,7 @@ void DLList<T>::add(const T &data)
   }
 }
 
-//Find
+// Find
 template <typename T>
 template <typename U>
 typename DLList<T>::Iterator DLList<T>::find(U predicate)
@@ -316,7 +316,7 @@ typename DLList<T>::Iterator DLList<T>::find(U predicate)
   return toReturn;
 }
 
-//Remove
+// Remove
 template <typename T>
 void DLList<T>::remove(DLList<T>::Iterator it)
 {
@@ -353,7 +353,7 @@ void DLList<T>::remove(DLList<T>::Iterator it)
   delete holdForDelete;
 }
 
-//Display
+// Display
 template <typename T>
 void DLList<T>::display()
 {

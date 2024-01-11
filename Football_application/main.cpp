@@ -1,12 +1,7 @@
-/* Student: Maid Huremovic
-   Br.Indeksa: 16157
-   Tuzla
-   21.06.2019
-*/
 #include "application.hpp"
 #include "structures.hpp"
 
-//Funkcija za prikazivanje menija
+// Menu function
 void displayMenu()
 {
 
@@ -26,19 +21,19 @@ void displayMenu()
     std::cout << "=======================================" << std::endl;
 }
 
-//Main funkcija
+// Main function
 int main(int argc, char const *argv[])
 {
     int input;
     displayMenu();
 
-    //Switch - case za izbor korisnika
+    // Switch - case menu
     while (std::cin >> input)
     {
         switch (input)
         {
 
-        //Case za dodavanje lige
+        // Add league
         case 1:
         {
 
@@ -51,9 +46,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za dodavanje tima/kluba (prilikom dodavanja potrebno je izabrati ligu
-        //                              jednu od ponudjenih koje se automatski prikazuju
-        //                              za izbor korisniku)
+        // Add team
         case 2:
         {
             std::string club1;
@@ -91,9 +84,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za dodavanje sudije (prilikom dodavanja potrebno je izabrati ligu,
-        //                              jednu od ponudjenih, koje se automatski prikazuju
-        //                              za izbor korisniku)
+        // Add referee
         case 3:
         {
             std::string referee1;
@@ -131,9 +122,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za generisanje parova i odigravanje(potrebno je izabrati ligu,
-        //                              jednu od ponudjenih, koje se automatski prikazuju
-        //                              za izbor korisniku)
+        // Generate pairs
         case 4:
         {
             std::string league;
@@ -167,9 +156,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za prikaz informacija o svim timovima (potrebno je izabrati ligu,
-        //                              jednu od ponudjenih, koje se automatski prikazuju
-        //                              za izbor korisniku)
+        // Show info about teams
         case 5:
         {
             std::string league;
@@ -201,9 +188,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za prikaz tabele lige (potrebno je izabrati ligu
-        //                              jednu od ponudjenih koje se automatski prikazuju
-        //                              za izbor korisniku)
+        // Show table
         case 6:
         {
             std::string league;
@@ -235,9 +220,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za prikaz utakmica i rezultata, te ostalog (potrebno je izabrati ligu
-        //                              jednu od ponudjenih koje se automatski prikazuju
-        //
+        // Show matches and results
         case 7:
         {
             std::string league;
@@ -269,9 +252,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        //Case za ponistavanje zadnje utakmice (potrebno je izabrati ligu
-        //                              jednu od ponudjenih koje se automatski prikazuju
-        //
+        // Cancel last match
         case 8:
         {
             std::string league;

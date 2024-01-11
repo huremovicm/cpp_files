@@ -11,13 +11,13 @@ class Application;
 
 //////////////////////////////
 
-//Funkcija za generisanje random vrijednosti int-a u odredjenom opsegu
+// Generate random int
 int randrange(int low, int high)
 {
     return rand() % (high - low + 1) + low;
 }
 
-// Struktura datum sa potrebnim operatorima
+// Date structure with operators
 struct Date
 {
     int day;
@@ -41,7 +41,7 @@ struct Date
     }
 };
 
-// Struktura rezultat sa potrebnim operatorima
+// Result structure
 struct Result
 {
     int home;
@@ -63,7 +63,7 @@ struct Result
 };
 //////////////////////////////
 
-//Struktura utakmica
+// Match structure
 struct Matches
 {
 
@@ -75,25 +75,25 @@ struct Matches
     Result result;
 };
 
-//Klasa Liga
+// Klasa Liga
 class League
 {
 public:
     League() {}
-    League(std::string name, std::string country) : name_(name), country_(country) {} //Konstruktor za kreiranje
-                                                                                     //lige 
-    void setTeam(const Team &t) // Setovanje tima
+    League(std::string name, std::string country) : name_(name), country_(country) {}
+
+    void setTeam(const Team &t)
     {
 
         teams_.push_back(t);
     }
-    void setReferee(const Referee &r) { referees_.push_back(r); } //Setovanje sudija
+    void setReferee(const Referee &r) { referees_.push_back(r); } // Set referee
 
     std::vector<Referee> &getRefrees() { return referees_; }
 
     std::string getName() { return name_; }
 
-    void pairsGeneration(); //dodano za generisanje parova
+    void pairsGeneration();
 
     void addNewTeam(Team &);
     void addReferee(Referee &);
@@ -104,22 +104,22 @@ public:
     void displayTable();
     void displayMatches();
 
-    std::vector<std::pair<Team, Team>> pairs_; //vektor parova za utakmice
+    std::vector<std::pair<Team, Team>> pairs_;
 
 private:
     std::string name_;
     std::string country_;
     std::vector<Team> teams_;
     std::vector<Matches> matches_;
-    std::vector<Referee> referees_; //dodano za sudije
+    std::vector<Referee> referees_;
 };
 
-std::vector<League> leagues_; //vektor liga za spremanje prilikom kreiranja liga
+std::vector<League> leagues_;
 
 void League::addNewTeam(Team &newTeam)
 {
     bool flag = false;
-    for (size_t i = 0; i < teams_.size(); i++) //dodavanje tima i provjera u slucaju da se isti tim vec postoji
+    for (size_t i = 0; i < teams_.size(); i++)
     {
         if (newTeam == teams_[i])
         {
@@ -140,7 +140,7 @@ void League::addNewTeam(Team &newTeam)
 void League::addReferee(Referee &newReferee)
 {
     bool flag = false;
-    for (size_t i = 0; i < getRefrees().size(); i++) //dodavanje sudije i provjera u slucaju da se isti tim vec postoji
+    for (size_t i = 0; i < getRefrees().size(); i++)
     {
         if (newReferee == getRefrees()[i])
         {
@@ -158,7 +158,7 @@ void League::addReferee(Referee &newReferee)
     }
 }
 
-//Dodavanje lige
+// Add league
 void League::addNewLeague()
 {
 
@@ -176,7 +176,7 @@ void League::addNewLeague()
     leagues_.push_back(tmp);
 }
 
-//Generisanje tim parova za utakmice 
+// Generate pairs for matches
 void League::pairsGeneration()
 {
 
@@ -192,12 +192,12 @@ void League::pairsGeneration()
             }
             else
             {
-                pairs_.push_back(std::make_pair(teams_[i], teams_[j])); //push pair timova za utakmicu home - guest
-                pairs_.push_back(std::make_pair(teams_[j], teams_[i])); //push pair timova za utakmicu obrnuto(svaki tim igra 2x sa dr. istim timom)
+                pairs_.push_back(std::make_pair(teams_[i], teams_[j]));
+                pairs_.push_back(std::make_pair(teams_[j], teams_[i]));
             }
         }
 
-        for (size_t i = 0; i < pairs_.size(); i++) //random raspored utakmica
+        for (size_t i = 0; i < pairs_.size(); i++)
         {
             int r = rand() % pairs_.size();
             std::swap(pairs_[i], pairs_[r]);
@@ -205,22 +205,22 @@ void League::pairsGeneration()
     }
 }
 
-//Odigravanje utakmica
+// Play game
 void League::playingMatches()
 {
 
     Matches match;
     std::vector<Date> dates;
 
-    if (referees_.size() == 0) //provjera da li ima sudija
+    if (referees_.size() == 0) // check for referee
     {
         std::cout << "No Referees! Please enter the referees." << std::endl;
     }
 
     int numOfPairs = pairs_.size();
-    int numOfDates = numOfPairs / 4; //najvise cetiri utakmice na jedan datum
+    int numOfDates = numOfPairs / 4;
 
-    for (size_t i = 0; i <= numOfDates; i++) //random generisanje datuma
+    for (size_t i = 0; i <= numOfDates; i++)
     {
         Date datetoPush;
         datetoPush.day = randrange(1, 30);
@@ -244,11 +244,10 @@ void League::playingMatches()
         match.team2 = pairs_[j].second;
         match.date = dates[dateNum];
 
-        //random generisnje sudija za utakmice
-        Referee randomMainReferee = referees_[randrange(0, referees_.size() - 1)]; 
+        Referee randomMainReferee = referees_[randrange(0, referees_.size() - 1)];
         Referee randomAssistentRefree = referees_[randrange(1, referees_.size() - 1)];
 
-        while (randomAssistentRefree == randomMainReferee)//glavni sudija ne moze biti i pomocni sudija na istoj utakmici
+        while (randomAssistentRefree == randomMainReferee)
         {
             randomAssistentRefree = referees_[randrange(0, referees_.size() - 1)];
         }
@@ -259,12 +258,10 @@ void League::playingMatches()
         int home;
         int guest;
 
-        //unos rez. utakmica
         std::cout << match.team1.name << " - " << match.team2.name << std::endl;
         std::cout << "Enter Match Result:  " << std::endl;
         std::cin >> home >> guest;
 
-        //dodijela bodova u zavisnosti na ishod utakmice
         if (home > guest)
         {
             for (size_t i = 0; i < teams_.size(); i++)
@@ -306,7 +303,7 @@ void League::playingMatches()
         tmp.guest = guest;
 
         match.result = tmp;
-        for (size_t i = 0; i < teams_.size(); i++) //inkrement odigranih utakmica
+        for (size_t i = 0; i < teams_.size(); i++)
         {
             if (teams_[i] == match.team1 || teams_[i] == match.team2)
                 teams_[i].playedMatches = teams_[i].playedMatches + 1;
@@ -320,11 +317,11 @@ void League::playingMatches()
     }
 }
 
-//Prikaz informacija o timovima
+// Info about teams
 void League::teamInfo()
 
 {
-    //Formatiranje ispisa prikaza
+    // Format on output
     std::string name = "NAME           ";
     std::string country = "COUNTRY        ";
     std::string city = "CITY           ";
@@ -356,17 +353,18 @@ void League::teamInfo()
     }
 }
 
-//Prikaz tabele
+// Show table
 void League::displayTable()
 {
 
     std::string name = "NAME           ";
     std::string points = "POINTS         ";
 
-    //sortiranje od tima sa najvise bodova ka timu sa najmanj bodova
-    sort(teams_.begin(), teams_.end(), [](const Team &a, const Team &b) { return a.points > b.points; });
+    // sort desc
+    sort(teams_.begin(), teams_.end(), [](const Team &a, const Team &b)
+         { return a.points > b.points; });
 
-    //formatiranje ispisa/prikaza
+    // format output
     for (size_t i = 0; i < 30; i++)
     {
         std::cout << "=";
@@ -388,7 +386,7 @@ void League::displayTable()
     }
 }
 
-//Prikaz utakmica i ostalih informacija vezanih za utakmicu
+// Show matches
 void League::displayMatches()
 {
 
@@ -399,7 +397,6 @@ void League::displayMatches()
     std::string assistent = "ASSISTENT REFEREE   ";
     std::string date = "DATE           ";
 
-    //Formatiranje ispisa/prikaza
     for (size_t i = 0; i < 96; i++)
     {
         std::cout << "=";
@@ -426,12 +423,12 @@ void League::displayMatches()
     }
 }
 
-//Ponistavanje zadnje utakmice
+// Cancel last match
 void League::undoLastMatch()
 {
 
     int lastIndex = matches_.size() - 1;
-    //ako su domaci pobijedili
+
     if (matches_[lastIndex].result.home > matches_[lastIndex].result.guest)
     {
 
@@ -439,8 +436,8 @@ void League::undoLastMatch()
         {
             if (matches_[lastIndex].team1 == teams_[i])
             {
-                teams_[i].points = teams_[i].points - 3; //oduzimanje bodova
-                teams_[i].playedMatches--; //dekrement odigranih utakmica
+                teams_[i].points = teams_[i].points - 3;
+                teams_[i].playedMatches--;
             }
             else
             {
@@ -448,7 +445,7 @@ void League::undoLastMatch()
             }
         }
     }
-    //ako su gosti pobjedili
+
     else if (matches_[lastIndex].result.home < matches_[lastIndex].result.guest)
     {
 
@@ -465,7 +462,7 @@ void League::undoLastMatch()
             }
         }
     }
-    //ako je utkamica zavrsila nerijeseno
+
     else if (matches_[lastIndex].result.home == matches_[lastIndex].result.guest)
     {
 
@@ -486,7 +483,6 @@ void League::undoLastMatch()
     matches_[lastIndex].team1.playedMatches--;
     matches_[lastIndex].team2.playedMatches--;
 
-    matches_.pop_back(); //pop za zadnju utakmicu
-}
+    matches_.pop_back();
 
 #endif // !APPLICATION_HPP_

@@ -31,14 +31,14 @@ int main(int argc, const char **argv)
     dequeue.display();
     std::cout << "---------------------------" << std::endl;
 
-    std::cout << "Front: " << dequeue.front()<< std::endl;
+    std::cout << "Front: " << dequeue.front() << std::endl;
     std::cout << "---------------------------" << std::endl;
 
-    std::cout << "Back: " << dequeue.back()<< std::endl;
+    std::cout << "Back: " << dequeue.back() << std::endl;
     std::cout << "---------------------------" << std::endl;
 
-    std::cout << "Size: " << dequeue.size()<< std::endl;
+    std::cout << "Size: " << dequeue.size() << std::endl;
     std::cout << "---------------------------" << std::endl;
-    
+
     return 0;
 }

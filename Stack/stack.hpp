@@ -41,20 +41,17 @@ void Stack<T>::pop()
     container_.pop_back();
 }
 
-
 template <typename T>
 T &Stack<T>::top()
 {
     return top_;
 }
 
-
 template <typename T>
 int Stack<T>::size()
 {
     return container_.size();
 }
-
 
 template <typename T>
 bool Stack<T>::empty()

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-//Struktura za tim sa potrebnim operatorima
+// Team structure with operators
 struct Team
 {
     std::string name;
@@ -64,8 +64,9 @@ struct Team
     }
 };
 
-//Struktura za sudiju sa potrebnim operatorima
-struct Referee{
+// Referee structure with operators
+struct Referee
+{
 
     std::string name;
     std::string surname;
@@ -106,11 +107,10 @@ struct Referee{
     operator bool() { return true || false; }
 };
 
-//Metodi koje aplikacija sadrzi
+// Application methods
 class Application
 {
 public:
-   
     virtual void addNewTeam(Team &) = 0;
     virtual void addReferee(Referee &) = 0;
     virtual void addNewLeague() = 0;
@@ -120,7 +120,7 @@ public:
     virtual void displayTable() = 0;
     virtual void displayMatches() = 0;
 
-    virtual void pairsGeneraation() = 0; //dodan za generaciju parova prilikom odigravanja utakmica
+    virtual void pairsGeneraation() = 0;
 };
 
 #endif // !APPLICATION_HPP_

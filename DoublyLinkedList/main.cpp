@@ -19,16 +19,17 @@ int main(int argc, char *argv[])
   dllist.display();
   std::cout << "--------------" << std::endl;
 
-  DLList<int> dllist2(dllist); //Copy constructor
+  DLList<int> dllist2(dllist); // Copy constructor
   std::cout << "Testing find predicate find ex. number 40" << std::endl;
-  auto it = dllist.find([](int a) { return a == 40; });
+  auto it = dllist.find([](int a)
+                        { return a == 40; });
 
   std::cout << "--------------" << std::endl;
   std::cout << "Find:" << '\n';
   std::cout << *it << std::endl;
   std::cout << "--------------" << std::endl;
 
-  auto iter = dllist.begin()+5;
+  auto iter = dllist.begin() + 5;
   auto toPrintRemoved = *iter;
   dllist.remove(iter);
   std::cout << "After remove" << '\n';
@@ -36,7 +37,6 @@ int main(int argc, char *argv[])
   std::cout << "--------------" << std::endl;
   std::cout << "Removed:" << '\n';
   std::cout << toPrintRemoved << '\n';
-  
 
   return 0;
 }
